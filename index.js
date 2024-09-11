@@ -17,4 +17,4 @@ const start = () => {
 }
 start()
 
-//30:51 minutos em que eu parei da aula 2#
+//10:08 minutos em que eu parei da aula 2#
