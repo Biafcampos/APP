@@ -82,6 +82,29 @@ const metasAbertas = async () => {
         choices: [...abertas]
     })
 }
+const deletarMetas = async () => {
+    const metaDesmarcadas = metas.map((meta) => {
+        
+        return {value: meta.value, checked: false}
+    })
+
+    const itemsADeletar = await checkbox({
+        message: "Selecione item para deletar",
+        choices:[...metaDesmarcadas],
+        instructions: false
+    })
+   if(itemsADeletar.length == 0){
+    console.log("Nenhum item para deletar")
+    return
+   }
+    itemsADeletar.forEach((item) => {
+       metas = metas.filter((meta) => {
+        return meta.value != item
+       })
+    })
+
+    console.log("Meta(s) deleta(s) com sucesso!")
+}
 
 const start = async() => {
     
@@ -105,6 +128,10 @@ const start = async() => {
             name: "Metas abertas",
             value: "abertas"
        },
+         {
+        name: "Deletar metas ",
+        value: "deletar"
+          },
             {
                 name: "Sair",
                 value: "sair"
@@ -127,6 +154,9 @@ const start = async() => {
                     case "abertas":
                     await metasAbertas()
                     break
+                    case "deletar":
+                    await deletarMetas()
+                    break
                 case "sair":
                     console.log("Até logo!")
                     return
@@ -136,4 +166,4 @@ const start = async() => {
 }
 start()
 
-//23:37 minutos em que eu parei da aula 3#
+//30:01 minutos em que eu parei da aula 3#
